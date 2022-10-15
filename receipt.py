@@ -1,6 +1,4 @@
 import csv
-# Import the datetime class from the datetime
-# module so that it can be used in this program.
 from datetime import datetime
 
 # Call the now() method to get the current
@@ -8,18 +6,11 @@ from datetime import datetime
 # the computer's operating system.
 current_date_and_time = datetime.now()
 
-
-PRODUCT_ID_INDEX = 0
-PRODUCT_NAME_INDEX = 1
-PRODUCT_PRICE_INDEX = 2
-
 def main():
     products_dicrionary = read_dict("products.csv", 0)
-    # 1. Print the store name at the top of the receipt.
-    print("Inkom Emporium")
-    print()
 
-    print("Requested Items")    
+    print("Requested Items")
+    
     with open("request.csv", 'rt') as request_list:
         reader = csv.reader(request_list)
         next(reader)
@@ -27,19 +18,17 @@ def main():
     
         for row_list in reader:
             key_value = row_list[0]
-            product_quantity = row_list[1]
+            product_quanittiy = row_list[1]
             row_list = products_dicrionary[key_value]
             description = row_list[1]
             price = row_list[2]
             
             
-            
-            # 2. Print the list of ordered items.
-            print(f"{description}: {int(product_quantity)} @ ${price}")
+            print(f"{description}: {product_quanittiy} @ ${price}")
     
-    quantity_sum = total(reader, request_list, products_dicrionary)
+    quantity_sum = total(request_list, products_dicrionary)
     print(f"Number of items: {quantity_sum}")
-
+    
     print()
     # 7. Print a thank you message.
     # Use an f-string to print the current
@@ -49,24 +38,6 @@ def main():
     # 8. Get the current date and time from your computer's operating system and print the current date and time.
     print(f"{current_date_and_time:%a %b %I:%M %p}")
     
-    # 9. Include a try block and except blocks to handle FileNotFoundError, PermissionError, and KeyError.
-    
-"""    Program should read
-    Inkom Emporium
-    
-    wheat bread: 2 @ 2.55
-    1 cup yogurt: 4 @ 0.75
-    32 oz granola: 1 @ 3.21
-    twix candy bar: 2 @ 0.85
-    1 cup yogurt: 3 @ 0.75
-
-    Number of Items: 12
-    Subtotal: 15.26
-    Sales Tax: 0.92
-    Total: 16.18"""
-
-    # Thank you for shopping at the Inkom Emporium.
-    # Wed Nov  4 05:10:30 2020
 
 def read_dict(filename, key_column_index):
     """Read the contents of a CSV file into a compound
@@ -91,34 +62,12 @@ def read_dict(filename, key_column_index):
             
     return return_dictionary
 
-# Indexs for inner lists in the product table.
-NAME_INDEX = 1
-PRODUCT_PRICE_INDEX = 2
-
-
-# Indexes for inner lists in the request lists
-ID_INDEX = 0
-REQUEST_INDEX = 1
-
-def total(reader, request_list, products_dicrionary):
+def total(request_list, products_dicrionary):
     # 3. Sum and print the number of ordered items.
     # Number of Items: 12
-    product_quantity = reader
-    quantity_int = product_quantity.split(',')
-    quantity_sum = sum(quantity_int)
 
 
     return quantity_sum
-    
 
-        
-    # 4. Sum and print the subtotal due.
-    # Subtotal: 15.26
-    # 5. Compute and print the sales tax amount. Use 6% as the sales tax rate.
-    # Sales Tax: 0.92
-    # 6. Compute and print the total amount due.
-    # Total: 16.18
-    
-    
 if __name__ == '__main__':
     main()
