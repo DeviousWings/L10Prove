@@ -12,12 +12,12 @@ Subtotal: 15.26
 Sales Tax: 0.92
 Total: 16.18
 
-1. Print the store name at the top of the receipt.
-2. Print the list of ordered items.
+1. (done) Print the store name at the top of the receipt.
+2. (done) Print the list of ordered items.
 3. Sum and print the number of ordered items.
 4. Sum and print the subtotal due.
 5. Compute and print the sales tax amount. Use 6% as the sales tax rate.
 6. Compute and print the total amount due.
-7. Print a thank you message.
-8. Get the current date and time from your computer's operating system and print the current date and time.
+7. (done) Print a thank you message.
+8. (done) Get the current date and time from your computer's operating system and print the current date and time.
 9. Include a try block and except blocks to handle FileNotFoundError, PermissionError, and KeyError

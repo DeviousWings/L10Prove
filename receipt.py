@@ -5,12 +5,23 @@ from datetime import datetime
 # date and time as a datetime object from
 # the computer's operating system.
 current_date_and_time = datetime.now()
+# Index for reader(aka request.csv)
+NAME_INDEX = 0
+QUANTITY_INDEX = 1
+
+# Index for products_dicrionary(aka products.csv)
+PRODUCT_CODE_INDEX = 0
+PRODUCT_NAME_INDEX = 1
+PRODUCT_PRICE_INDEX = 2
 
 def main():
     products_dicrionary = read_dict("products.csv", 0)
 
     print("Requested Items")
-    
+    total_quantity = 0
+    # subtotal = 0.0
+    # sales_tax = 0.0
+    # total = 0.0
     with open("request.csv", 'rt') as request_list:
         reader = csv.reader(request_list)
         next(reader)
@@ -25,15 +36,16 @@ def main():
             
             
             print(f"{description}: {product_quantity} @ ${price}")
-    
-    print(f"Number of Items: {sum(map(int, product_quantity.values()))}")
-    
-    
+        print()
+        
+                
+        for inner_list in reader:
+            quantity = inner_list[QUANTITY_INDEX]
+            total_quantity += quantity
+            print(f"Number of Items: {total_quantity}")
+    print(0)
+
     print()
-    # 7. Print a thank you message.
-    # Use an f-string to print the current
-    # day of the week and the current time.
-    # Wed Nov  4 05:10:30 2020
     print("Thank you for shopping at the Inkom Emporium.")
     # 8. Get the current date and time from your computer's operating system and print the current date and time.
     print(f"{current_date_and_time:%a %b %I:%M %p}")
@@ -61,6 +73,9 @@ def read_dict(filename, key_column_index):
             return_dictionary[current_row[0]] = current_row
             
     return return_dictionary
+
+
+
 
 
 if __name__ == '__main__':
