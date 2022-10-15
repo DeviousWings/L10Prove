@@ -9,7 +9,9 @@ from datetime import datetime
 current_date_and_time = datetime.now()
 
 
-
+PRODUCT_ID_INDEX = 0
+PRODUCT_NAME_INDEX = 1
+PRODUCT_PRICE_INDEX = 2
 
 def main():
     products_dicrionary = read_dict("products.csv", 0)
@@ -35,13 +37,8 @@ def main():
             # 2. Print the list of ordered items.
             print(f"{description}: {int(product_quantity)} @ ${price}")
     
-
-        print()
-        quantity = total(request_list, products_dicrionary)
-        # 3. Sum and print the number of ordered items.
-        # Number of Items: 12
-        print(f"Number of items: {quantity}")
-    
+    quantity_sum = total(reader, request_list, products_dicrionary)
+    print(f"Number of items: {quantity_sum}")
 
     print()
     # 7. Print a thank you message.
@@ -93,29 +90,26 @@ def read_dict(filename, key_column_index):
             return_dictionary[current_row[0]] = current_row
             
     return return_dictionary
-#Indexes for inner lists in the products list
-NAME_INDEX = 0
-QUANTITY_INDEX = 1
 
-# Indexes fo rinner lists in the request lists
+# Indexs for inner lists in the product table.
+NAME_INDEX = 1
+PRODUCT_PRICE_INDEX = 2
+
+
+# Indexes for inner lists in the request lists
 ID_INDEX = 0
 REQUEST_INDEX = 1
 
-def total(request_list, products_dicrionary):
+def total(reader, request_list, products_dicrionary):
     # 3. Sum and print the number of ordered items.
     # Number of Items: 12
-    total_quantity = 0
-    # Get the quantity for the symbol from the dictionary.
-    for inner_list in request_list:
-        name = inner_list[ID_INDEX]
-        quanitiy = inner_list[REQUEST_INDEX]
+    product_quantity = reader
+    quantity_int = product_quantity.split(',')
+    quantity_sum = sum(quantity_int)
+
+
+    return quantity_sum
     
-    # Add the quantity together
-        total_items = products_dicrionary[name][QUANTITY_INDEX]
-        product = total_items + quanitiy
-        total_quantity += product
-        
-    return total_quantity
 
         
     # 4. Sum and print the subtotal due.
