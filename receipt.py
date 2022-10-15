@@ -18,16 +18,16 @@ def main():
     
         for row_list in reader:
             key_value = row_list[0]
-            product_quanittiy = row_list[1]
+            product_quantity = row_list[1]
             row_list = products_dicrionary[key_value]
             description = row_list[1]
             price = row_list[2]
             
             
-            print(f"{description}: {product_quanittiy} @ ${price}")
+            print(f"{description}: {product_quantity} @ ${price}")
     
-    quantity_sum = total(request_list, products_dicrionary)
-    print(f"Number of items: {quantity_sum}")
+    print(f"Number of Items: {sum(map(int, product_quantity.values()))}")
+    
     
     print()
     # 7. Print a thank you message.
@@ -62,12 +62,6 @@ def read_dict(filename, key_column_index):
             
     return return_dictionary
 
-def total(request_list, products_dicrionary):
-    # 3. Sum and print the number of ordered items.
-    # Number of Items: 12
-
-
-    return quantity_sum
 
 if __name__ == '__main__':
     main()
