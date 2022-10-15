@@ -37,7 +37,7 @@ def main():
     
 
         print()
-        quantity = total(products_dicrionary)
+        quantity = total(request_list, products_dicrionary)
         # 3. Sum and print the number of ordered items.
         # Number of Items: 12
         print(f"Number of items: {quantity}")
@@ -95,27 +95,27 @@ def read_dict(filename, key_column_index):
     return return_dictionary
 #Indexes for inner lists in the products list
 NAME_INDEX = 0
-quantity_INDEX = 1
+QUANTITY_INDEX = 1
 
 # Indexes fo rinner lists in the request lists
 ID_INDEX = 0
 REQUEST_INDEX = 1
 
-def total(products_dicrionary):
+def total(request_list, products_dicrionary):
     # 3. Sum and print the number of ordered items.
     # Number of Items: 12
-    sum = 0
+    total_quantity = 0
     # Get the quantity for the symbol from the dictionary.
-    for inner_list in products_dicrionary:
+    for inner_list in request_list:
         name = inner_list[ID_INDEX]
         quanitiy = inner_list[REQUEST_INDEX]
     
     # Add the quantity together
-        total_items = products_dicrionary[name][quantity_INDEX]
-        sum = sum(total_items)
+        total_items = products_dicrionary[name][QUANTITY_INDEX]
+        product = total_items + quanitiy
+        total_quantity += product
         
-        
-    return sum
+    return total_quantity
 
         
     # 4. Sum and print the subtotal due.
